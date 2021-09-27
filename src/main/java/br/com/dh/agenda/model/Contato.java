@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
+
 @Table(name = "tb_contato")
 public class Contato {
 	
