@@ -1,7 +1,14 @@
 package br.com.dh.agenda.dto;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import br.com.dh.agenda.model.Contato;
+import br.com.dh.agenda.model.Email;
+import br.com.dh.agenda.model.Endereco;
+import br.com.dh.agenda.model.Telefone;
 
 public class ContatoInputDto {
 
@@ -48,7 +55,23 @@ public class ContatoInputDto {
 	public Set<EmailInputDto> getEmails() {
 		return emails;
 	}
-	
-	
+
+	public Contato converte() {
+		Contato contato = new Contato(nome, sobrenome, apelido);
+
+		List<Endereco> end = enderecos.stream().map(e -> e.converte(contato)).collect(Collectors.toList());
+		
+		List<Telefone> tel = telefones.stream().map(t -> t.converte(contato)).collect(Collectors.toList());
+		
+		List<Email> em = emails.stream().map(email -> email.converte(contato)).collect(Collectors.toList());
+					
+		contato.adicionaEnderecos(end);
+		
+		contato.adicionaTelefones(tel);
+		
+		contato.adicionaEmails(em);
+		
+		return contato;
+	}
 
 }

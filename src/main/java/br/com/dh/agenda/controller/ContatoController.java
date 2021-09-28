@@ -1,7 +1,5 @@
 package br.com.dh.agenda.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +22,12 @@ public class ContatoController {
 	@PostMapping
 	public ResponseEntity<Contato> salvar(@RequestBody ContatoInputDto contatoInputDto) {
 
-		Optional<Contato> contato = contatoRepository.findById(contatoInputDto.getContatoId());
-		
-		if (contato.isPresent()) {
-			new Contato(contatoInputDto.getNome(), contatoInputDto.getSobrenome(), contatoInputDto.getApelido());
-		}
+		contatoRepository.save(contatoInputDto.converte());
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 
 	}
+	
+	
 
 }

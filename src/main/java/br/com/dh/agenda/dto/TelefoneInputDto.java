@@ -1,5 +1,7 @@
 package br.com.dh.agenda.dto;
 
+import br.com.dh.agenda.model.Contato;
+import br.com.dh.agenda.model.Telefone;
 import br.com.dh.agenda.model.TipoTelefone;
 
 public class TelefoneInputDto {
@@ -33,6 +35,12 @@ public class TelefoneInputDto {
 
 	public Long getNumero() {
 		return numero;
+	}
+	
+	public Telefone converte(Contato contato) {
+		Telefone telefone = new Telefone(tipoTelefone, ddd, numero, contato);
+		
+		return telefone;
 	}
 
 }

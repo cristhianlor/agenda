@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_email")
 public class Email {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -26,13 +26,13 @@ public class Email {
 	@JoinColumn(name = "contato_id", nullable = false)
 	private Contato contato;
 
-	public Email() {
-	}
-
 	public Email(TipoEmail tipoEmail, String email, Contato contato) {
 		this.tipoEmail = tipoEmail;
 		this.email = email;
 		this.contato = contato;
+	}
+
+	public Email() {
 	}
 
 	public Integer getId() {

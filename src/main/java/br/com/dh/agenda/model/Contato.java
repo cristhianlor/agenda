@@ -3,6 +3,7 @@ package br.com.dh.agenda.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,11 +26,11 @@ public class Contato {
 	private String sobrenome;
 	@Column(name = "apelido", length = 60, nullable = false)
 	private String apelido;
-	@OneToMany(mappedBy = "contato")
+	@OneToMany(mappedBy = "contato", cascade = CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
-	@OneToMany(mappedBy = "contato")
+	@OneToMany(mappedBy = "contato", cascade = CascadeType.ALL)
 	private List<Endereco> enderecos = new ArrayList<>();
-	@OneToMany(mappedBy = "contato")
+	@OneToMany(mappedBy = "contato", cascade = CascadeType.ALL)
 	private List<Email> emails = new ArrayList<>();
 
 	public Contato() {
@@ -80,6 +81,21 @@ public class Contato {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+
+	public void adicionaEnderecos(List<Endereco> end) {
+		this.enderecos = end;
+		
+	}
+
+	public void adicionaTelefones(List<Telefone> tel) {
+		this.telefones = tel;
+		
+	}
+
+	public void adicionaEmails(List<Email> em) {
+		this.emails = em;
+		
 	}
 
 }

@@ -1,5 +1,7 @@
 package br.com.dh.agenda.dto;
 
+import br.com.dh.agenda.model.Contato;
+import br.com.dh.agenda.model.Email;
 import br.com.dh.agenda.model.TipoEmail;
 
 public class EmailInputDto {
@@ -26,6 +28,12 @@ public class EmailInputDto {
 	}
 
 	public String getEmail() {
+		return email;
+	}
+	
+	public Email converte (Contato contato) {
+		Email email = new Email();
+		
 		return email;
 	}
 
