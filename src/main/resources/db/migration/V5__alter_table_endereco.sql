@@ -1,0 +1,1 @@
+alter table tb_endereco add constraint contato_id foreign key (contato_id) references tb_contato;

@@ -32,7 +32,7 @@ public class EmailInputDto {
 	}
 	
 	public Email converte (Contato contato) {
-		Email email = new Email();
+		Email email = new Email(tipoEmail, this.email, contato);
 		
 		return email;
 	}

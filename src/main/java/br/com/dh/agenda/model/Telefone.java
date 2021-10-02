@@ -22,7 +22,7 @@ public class Telefone {
 	private TipoTelefone tipoTelefone;
 	@Column(name = "cd_area", length = 3, nullable = false)
 	private int ddd;
-	@Column(name = "num_tel", length = 3, nullable = false)
+	@Column(name = "num_tel", length = 9, nullable = false)
 	private Long numero;
 	@ManyToOne
 	@JoinColumn(name = "contato_id", nullable = false)
