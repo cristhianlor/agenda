@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 
 @EnableWebSecurity
 @Configuration
@@ -15,22 +16,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Método que lida com autenticação
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
+		
 	}
 
 	// Método que lida com autorização
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().
+		http.headers().frameOptions().disable().and().
+
 		// desabilitar csrf para que possamos fazer post
 				csrf().disable().authorizeRequests().
 				// liberar acesso via GET para url clientes e usuários
 				antMatchers(HttpMethod.GET, "/contato/*").
 				permitAll().
-				antMatchers(HttpMethod.POST, "/contato").
+				antMatchers(HttpMethod.POST, "/contato/*").
+				permitAll().
+				antMatchers("/h2-console/*").
 				permitAll().
 				anyRequest().
-				authenticated();
+				authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
 	// Método que lida com recursos estáticos

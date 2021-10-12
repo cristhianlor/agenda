@@ -1,8 +1,6 @@
 package br.com.dh.agenda.controller;
 
-import java.util.Optional;
-
-import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,35 +14,42 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dh.agenda.dto.ContatoInputDto;
 import br.com.dh.agenda.model.Contato;
-import br.com.dh.agenda.repository.ContatoRepository;
+import br.com.dh.agenda.service.ContatoService;
 
 @RestController
 @RequestMapping("/contato")
 public class ContatoController {
 
+//	@Autowired
+//	private ContatoRepository contatoRepository;
+
 	@Autowired
-	private ContatoRepository contatoRepository;
+	private ContatoService contatoService;
 
 	@PostMapping
-	public ResponseEntity<Contato> salvar(@RequestBody ContatoInputDto contatoInputDto) {
+	public ResponseEntity<ContatoInputDto> salvar(@RequestBody ContatoInputDto contatoInputDto) {
 
-		contatoRepository.save(contatoInputDto.converte());
+		
+		
+		contatoService.salvar(contatoInputDto.converte());
+		
+		
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<Contato> buscar(@PathVariable Integer id) {
+	public Contato buscar(@PathVariable Integer id) {
 
-		Optional<Contato> contato = contatoRepository.findById(id);
+		return contatoService.buscarPorId(id);
 
-		if (!contato.isPresent()) {
-			throw new EntityNotFoundException();
-		}
+	}
 
-		return ResponseEntity.ok(contato.get());
+	@GetMapping
+	public List<Contato> listar() {
 
+		return contatoService.listarTodos();
 	}
 
 }
