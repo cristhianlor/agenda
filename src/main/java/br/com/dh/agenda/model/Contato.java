@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Table(name = "tb_contato")
 public class Contato {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -26,6 +26,7 @@ public class Contato {
 	private String sobrenome;
 	@Column(name = "apelido", length = 60, nullable = false)
 	private String apelido;
+
 	@OneToMany(mappedBy = "contato", cascade = CascadeType.ALL)
 	private List<Telefone> telefones = new ArrayList<>();
 	@OneToMany(mappedBy = "contato", cascade = CascadeType.ALL)
@@ -58,6 +59,18 @@ public class Contato {
 		return apelido;
 	}
 
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public List<Email> getEmails() {
+		return emails;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,17 +98,17 @@ public class Contato {
 
 	public void adicionaEnderecos(List<Endereco> end) {
 		this.enderecos = end;
-		
+
 	}
 
 	public void adicionaTelefones(List<Telefone> tel) {
 		this.telefones = tel;
-		
+
 	}
 
 	public void adicionaEmails(List<Email> em) {
 		this.emails = em;
-		
+
 	}
 
 }

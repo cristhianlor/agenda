@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dh.agenda.dto.ContatoInputDto;
 import br.com.dh.agenda.model.Contato;
+import br.com.dh.agenda.model.Endereco;
 import br.com.dh.agenda.service.ContatoService;
 
 @RestController
@@ -29,11 +30,11 @@ public class ContatoController {
 	@PostMapping
 	public ResponseEntity<ContatoInputDto> salvar(@RequestBody ContatoInputDto contatoInputDto) {
 
-		
-		
 		contatoService.salvar(contatoInputDto.converte());
 		
+		//List<Endereco> enderecos = contatoInputDto.getEnderecos().stream().map(i -> new Endereco(contatoInputDto.ge, null, 0, null, contato))
 		
+		//contato.adicionaEnderecos();
 
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 

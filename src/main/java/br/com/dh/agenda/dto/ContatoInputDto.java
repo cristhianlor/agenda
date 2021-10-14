@@ -20,12 +20,15 @@ public class ContatoInputDto {
 	private Set<TelefoneInputDto> telefones = new HashSet<>();
 	private Set<EmailInputDto> emails = new HashSet<>();
 
-	public ContatoInputDto(Integer contatoId, String nome, String sobrenome, String apelido, Set<EnderecoInputDto> enderecos) {
+	public ContatoInputDto(Integer contatoId, String nome, String sobrenome, String apelido, Set<EnderecoInputDto> enderecos, 
+			Set<TelefoneInputDto> telefones, Set<EmailInputDto> emails) {
 		this.contatoId = contatoId;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.apelido = apelido;
 		this.enderecos = enderecos;
+		this.telefones = telefones;
+		this.emails = emails;
 
 	}
 
