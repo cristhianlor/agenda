@@ -26,10 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// desabilitar csrf para que possamos fazer post
 				csrf().disable().authorizeRequests().
-				// liberar acesso via GET para url clientes e usuários
+				// liberar acesso via GET para url contato
 				antMatchers(HttpMethod.GET, "/contato/*").
 				permitAll().
-				antMatchers(HttpMethod.POST, "/contato/*").
+				// liberar acesso via POST para url contato
+				antMatchers(HttpMethod.POST, "/contato/**").
 				permitAll().
 				antMatchers("/h2-console/*").
 				permitAll().

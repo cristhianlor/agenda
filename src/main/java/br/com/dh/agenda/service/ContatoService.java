@@ -31,7 +31,11 @@ public class ContatoService {
 	}
 
 	public void excluir(Integer id) {
+		try {
+			contatoRepository.deleteById(id);
+		} catch (EntityNotFoundException e) {
+			throw new EntityNotFoundException("Não existe um contato com o código " + id);
+		}
 
-		contatoRepository.deleteById(id);
 	}
 }
