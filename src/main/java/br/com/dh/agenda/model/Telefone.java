@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NaturalId;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -24,6 +26,7 @@ public class Telefone {
 	private TipoTelefone tipoTelefone;
 	@Column(name = "cd_area", length = 3, nullable = false)
 	private int ddd;
+	@NaturalId
 	@Column(name = "num_tel", length = 9, nullable = false)
 	private Long numero;
 	@JsonIgnore

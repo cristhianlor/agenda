@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-
 @Table(name = "tb_contato")
 public class Contato {
 

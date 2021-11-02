@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +31,7 @@ public class Endereco {
 	private String complemento;
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "contato_id", nullable = false)
+	@JoinColumn(name = "contato_id", foreignKey = @ForeignKey(name = "contato_id_fk"), nullable = false)
 	private Contato contato;
 
 	public Endereco() {
